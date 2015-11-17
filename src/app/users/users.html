@@ -1,0 +1,91 @@
+<button class="btn btn-info" ng-click="users.add = true">Dodaj użytkownika</button>
+<button ng-show="users.add" class="btn btn-info" ng-click="users.save(users.newUser)">Zapisz</button>
+<button ng-show="users.add" class="btn btn-info" ng-click="users.add = false">Anuluj</button>
+<!-- formularz dodawania użytkownika -->
+<form class="form-horizontal" id="addUser" name="addUser" ng-show="users.add">
+  <span class="alert-info">Dodawanie użytkownika</span>
+  <div class="form-group">
+    <label class="control-label col-md-1">Lp.</label>
+    <div class="col-md-3">
+      <input class="form-control" readonly ng-model="users.newUser.id">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-1">Nazwa</label>
+    <div class="col-md-3">
+      <input class="form-control" ng-model="users.newUser.name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-1">Opis</label>
+    <div class="col-md-3">
+      <input class="form-control" ng-model="users.newUser.descr">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-1">Aktywny</label>
+    <div class="checkbox col-md-3">
+      <label>
+        <input type="checkbox" ng-model="users.newUser.isActive">(zaznacz gdy aktywny)
+      </label>
+    </div>
+  </div>
+</form>
+<!-- -->
+
+<!-- lista użytkowników -->
+<table class="table table-hover">
+  <tr class="active">
+    <th class="col-md-1">Lp.</th>
+    <th class="col-md-3">Nazwa</th>
+    <th class="col-md-3">Opis</th>
+    <th class="col-md-3">Akcje</th>
+  </tr>
+  <tr ng-repeat="user in users.listUsers" ng-class="{success: user.isActive, danger:!user.isActive}">
+    <td class="col-md-1"> {{user.id}} </td>
+    <td class="col-md-3"> {{user.name}} </td>
+    <td class="col-md-3"> {{user.descr}} </td>
+    <td class="col-md-3">
+     <!-- <a ui-sref="add({id:user.id})">-->
+        <span class="glyphicon glyphicon-edit" ng-click="users.setEdit(user)"></span>
+      </a>
+    </td>
+  </tr>
+</table>
+<!-- -->
+
+<!-- Edycja użytkownika -->
+<form class="form-horizontal" name="editForm" novalidate ng-show="users.edited">
+
+    <div class="form-group">
+      <label for="id" class="control-label col-md-1 ">Lp.</label>
+      <div class="col-md-3">
+        <input id="id" type="text" class="form-control" required="" name="id" readonly ng-model="users.edited.id" >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nazwa" class="control-label col-md-1">Nazwa</label>
+      <div class="col-md-3">
+        <input id="nazwa" type="text" class="form-control" required="" name="name" ng-model="users.edited.name">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="opis" class="col-md-1 control-label">Opis</label>
+      <div class="col-md-3">
+        <input id="opis" type="text" class="form-control" required="" name="opis" ng-model="users.edited.descr">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-1">Aktywny</label>
+      <div class="checkbox col-md-3">
+        <label>
+          <input type="checkbox" ng-checked="user.edited.isActive" ng-model="user.edited.isActive">(zaznacz gdy aktywny)
+        </label>
+      </div>
+    </div>
+</form>
+<button ng-show="users.edited" class="btn btn-info" ng-click="users.edit(user)">Zapisz</button>
+<button ng-show="users.edited" class="btn btn-info" ng-click="users.edited.delete()">Anuluj</button>
+<!-- -->

@@ -1,0 +1,23 @@
+<div>
+{{user | json}}
+</div>
+<form class="form-inline" name="editForm" novalidate >
+  <div class="row">
+    <div class="form-group">
+      <label for="id" class="control-label">Lp.</label>
+      <input id="id" type="text" class="form-control" required="" name="id" readonly ng-model="user.details.id" >
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <label for="nazwa" class="control-label">Nazwa</label>
+      <input id="nazwa" type="text" class="form-control" required="" name="name" ng-model="user.details.name">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <label for="opis" class="control-label">Opis</label>
+      <input id="opis" type="text" class="form-control" required="" name="opis" ng-model="user.details.descr">
+    </div>
+  </div>
+</form>
