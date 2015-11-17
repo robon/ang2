@@ -33,6 +33,7 @@ angular.module('ang2.users')
 
     vm.setEdit = function(user){
       vm.edited = angular.copy(user);
+
     };
 
     vm.save = function(user){
@@ -46,8 +47,11 @@ angular.module('ang2.users')
     };
 
     vm.edit = function(user){
-      vm.listUsers.push(user);
-      // $state.reload();
+       angular.forEach(vm.listUsers, function(u, i) {
+            if (u.id === user.id ) {
+                vm.listUsers[i] = user;
+            }
+        });
     };
 
 

@@ -56,7 +56,7 @@
 
 <!-- Edycja użytkownika -->
 <form class="form-horizontal" name="editForm" novalidate ng-show="users.edited">
-
+  <span class="alert-info">Edycja użytkownika</span>
     <div class="form-group">
       <label for="id" class="control-label col-md-1 ">Lp.</label>
       <div class="col-md-3">
@@ -81,11 +81,13 @@
       <label class="control-label col-md-1">Aktywny</label>
       <div class="checkbox col-md-3">
         <label>
-          <input type="checkbox" ng-checked="user.edited.isActive" ng-model="user.edited.isActive">(zaznacz gdy aktywny)
+          <input type="checkbox" ng-model="user.edited.isActive" name="active">(zaznacz gdy aktywny)
+
         </label>
       </div>
     </div>
 </form>
-<button ng-show="users.edited" class="btn btn-info" ng-click="users.edit(user)">Zapisz</button>
+
+<button ng-show="users.edited" class="btn btn-info" ng-click="users.edit(users.edited)">Zapisz</button>
 <button ng-show="users.edited" class="btn btn-info" ng-click="users.edited.delete()">Anuluj</button>
 <!-- -->
