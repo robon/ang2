@@ -33,8 +33,18 @@ angular.module('ang2.users')
 
     vm.setEdit = function(user){
       vm.edited = angular.copy(user);
-
+console.log(vm.edited);
     };
+
+      vm.setDelete = function(user){
+
+          angular.forEach(vm.listUsers, function(u, i) {
+              if (u.id === user.id ) {
+                  vm.listUsers.splice(i, 1);
+
+              }
+          });
+      };
 
     vm.save = function(user){
       vm.addUser = angular.copy(user);
